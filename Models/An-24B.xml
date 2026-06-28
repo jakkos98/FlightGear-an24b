@@ -12,6 +12,23 @@
       <z-m>0</z-m>
     </offsets>
 
+    <nasal>
+      <load><![CDATA[
+  # Receive generic properties sent by the remote An-24b and alias them to properties used in animations.
+  # The properties used in animations are all under /ai/models/multiplayer[*]/, which is the root of the
+  # property tree of the remote An-24b and, represented below by cmdarg().
+  var rplayer = cmdarg();
+  rplayer.getNode("an24/animations/nose", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+      var livery_update = aircraft.livery_update.new("Aircraft/an24b/Models/Liveries");
+      ]]>
+      </load>
+
+    <unload><![CDATA[
+      livery_update.stop();
+    ]]></unload>
+    </nasal>
+
  <effect>
   <inherits-from>Effects/model-transparent</inherits-from>
    <object-name>paxwindows</object-name>
@@ -89,6 +106,77 @@
   <object-name>aileronR</object-name>
   <object-name>rudder</object-name>
  </animation>
+ <!--*********************
+ ** LIVERIES
+ **********************-->
+
+ <animation>
+   <type>material</type>
+   <object-name>wings</object-name>
+   <object-name>propR</object-name>
+   <object-name>propL</object-name>
+   <object-name>flapinnerL</object-name>
+   <object-name>flapinnerR</object-name>
+   <object-name>flapcenterL</object-name>
+   <object-name>flapcenterR</object-name>
+   <object-name>aileronL</object-name>
+   <object-name>aileronR</object-name>
+   <object-name>frontwheels</object-name>
+   <object-name>mainwheels_left</object-name>
+   <object-name>mainwheels_right</object-name>
+   <property-base>sim/model/livery</property-base>
+   <texture-prop>CIS_An24B_t</texture-prop>
+   <texture>Liveries/an24hvost.png</texture>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>cockpit1a-5</object-name>
+    <object-name>cargosection7-10</object-name>
+    <object-name>crewsection5-7</object-name>
+    <object-name>fuselage</object-name>
+    <object-name>fuselage.001</object-name>
+    <object-name>emergency_hatchL</object-name>
+    <object-name>emergency_hatchR</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>an24korpusLeft</texture-prop>
+    <texture>Liveries/an24korpusLeft.png</texture>
+   </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>v-tail</object-name>
+    <object-name>rudder</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>an24hvost</texture-prop>
+    <texture>Liveries/an24hvost.png</texture>
+   </animation>
+
+   <animation>
+     <type>material</type>
+     <object-name>nacelles</object-name>
+     <property-base>sim/model/livery</property-base>
+     <texture-prop>an24dvigatel</texture-prop>
+     <texture>Liveries/an24dvigatel.png</texture>
+    </animation>
+
+   <animation>
+     <type>material</type>
+     <object-name>h-tail</object-name>
+     <property-base>sim/model/livery</property-base>
+     <texture-prop>an24stabilizator</texture-prop>
+     <texture>Liveries/an24stabilizator.png</texture>
+   </animation>
+
+   <animation>
+     <type>select</type>
+     <object-name>exterior</object-name>
+     <condition>
+       <not>
+        <property>sim/current-view/internal</property>
+       </not>
+     </condition>
+   </animation>
 
 <!--*********************
 ** COMPOSITOR LIGHTS
@@ -104,7 +192,7 @@
    </less-than>
   </condition>
  </animation>
- 
+
  <animation>
   <type>select</type>
   <object-name>OSS-61red_comp</object-name>
@@ -119,7 +207,7 @@
    </less-than>
   </condition>
  </animation>
- 
+
 <!-- Landing/Taxi Lights -->
  <light>
   <name>PRF-4left_comp</name>
@@ -191,7 +279,7 @@
    </greater-than>
   </condition>
  </animation>
- 
+
  <animation>
   <type>flash</type>
   <object-name>PRF-4Lhalo</object-name>
@@ -261,7 +349,7 @@
     <property>an24/lights/PRF-4R_lamp</property>
   </dim-factor>
  </light>
- 
+
  <animation>
   <type>rotate</type>
   <object-name>PRF-4right_comp</object-name>
@@ -295,7 +383,7 @@
    </greater-than>
   </condition>
  </animation>
- 
+
  <animation>
   <type>flash</type>
   <object-name>PRF-4Rhalo</object-name>
@@ -763,7 +851,7 @@
     <factor-prop>an24/lights/BANO-57</factor-prop>
    </emission>
  </animation>
- 
+
  <animation>
   <type>flash</type>
   <object-name>bano-57rednav</object-name>
@@ -784,7 +872,7 @@
    <z>0.0</z>
   </axis>
  </animation>
- 
+
  <!---->
  <light>
   <name>BANO-57green_comp</name>
@@ -859,7 +947,7 @@
     <factor-prop>an24/lights/BANO-57</factor-prop>
    </emission>
  </animation>
- 
+
  <animation>
   <type>flash</type>
   <object-name>bano-57greennav</object-name>
@@ -880,7 +968,7 @@
    <z>1.0</z>
   </axis>
  </animation>
- 
+
 
 <!--*********************
 ** EFFECTS
@@ -927,7 +1015,7 @@
 <!--Ailerons-->
 <animation>
   <type>rotate</type>
-  <object-name>aileronL</object-name>  
+  <object-name>aileronL</object-name>
   <property>surface-positions/left-aileron-pos-norm</property>
   <interpolation>
     <entry><ind>-1</ind><dep>-24</dep></entry> <!-- matches the -0.419 radians in the FDM -->
@@ -945,7 +1033,7 @@
 
 <animation>
   <type>rotate</type>
-  <object-name>aileronR</object-name>  
+  <object-name>aileronR</object-name>
   <property>surface-positions/right-aileron-pos-norm</property>
   <interpolation>
     <entry><ind>-1</ind><dep>-24</dep></entry>
@@ -964,7 +1052,7 @@
 <!--Rudder-->
 <animation>
   <type>rotate</type>
-  <object-name>rudder</object-name>  
+  <object-name>rudder</object-name>
   <property>surface-positions/rudder-pos-norm</property>
   <factor>25</factor> <!-- matches the 0.436 radians in the FDM -->
   <offset-deg>0.0</offset-deg>
@@ -981,7 +1069,7 @@
 <!--Elevators-->
 <animation>
   <type>rotate</type>
-  <object-name>elevatorL</object-name>  
+  <object-name>elevatorL</object-name>
   <property>controls/flight/elevator</property>
   <factor>-25.0</factor>
   <offset-deg>0.0</offset-deg>
@@ -997,7 +1085,7 @@
 
 <animation>
   <type>rotate</type>
-  <object-name>elevatorR</object-name>  
+  <object-name>elevatorR</object-name>
   <property>controls/flight/elevator</property>
   <factor>25.0</factor>
   <offset-deg>0.0</offset-deg>
@@ -1014,7 +1102,7 @@
 <!--Flaps-->
 <animation>
   <type>rotate</type>
-  <object-name>flapinnerL</object-name>  
+  <object-name>flapinnerL</object-name>
   <property>surface-positions/flap-pos-norm</property>
   <factor>38.0</factor>
   <center>
@@ -1031,7 +1119,7 @@
 
 <animation>
   <type>rotate</type>
-  <object-name>flapinnerR</object-name>  
+  <object-name>flapinnerR</object-name>
   <property>surface-positions/flap-pos-norm</property>
   <factor>38.0</factor>
   <center>
@@ -1048,7 +1136,7 @@
 
 <animation>
   <type>rotate</type>
-  <object-name>flapcenterL</object-name>  
+  <object-name>flapcenterL</object-name>
   <property>surface-positions/flap-pos-norm</property>
   <factor>38.0</factor>
   <center>
@@ -1065,7 +1153,7 @@
 
 <animation>
   <type>rotate</type>
-  <object-name>flapcenterR</object-name>  
+  <object-name>flapcenterR</object-name>
   <property>surface-positions/flap-pos-norm</property>
   <factor>38.0</factor>
   <center>
@@ -1246,7 +1334,7 @@
   <axis>
     <x>0</x>
     <y>-1</y>
-    <z>0</z>    
+    <z>0</z>
   </axis>
 </animation>
 
@@ -1263,7 +1351,7 @@
   <axis>
     <x>1</x>
     <y>0</y>
-    <z>0</z>    
+    <z>0</z>
   </axis>
 </animation-->
 
@@ -1308,7 +1396,7 @@
     <entry><ind>0.8</ind><dep>-90</dep></entry>
     <entry><ind>1.0</ind><dep>  0</dep></entry>
   </interpolation>
-  <axis>   
+  <axis>
    <x1-m>1.11</x1-m>
    <y1-m>-0.3659</y1-m>
    <z1-m>-0.5013</z1-m>
@@ -1328,7 +1416,7 @@
     <entry><ind>0.8</ind><dep>90</dep></entry>
     <entry><ind>1.0</ind><dep> 0</dep></entry>
   </interpolation>
-  <axis>   
+  <axis>
    <x1-m>1.11</x1-m>
    <y1-m>0.3659</y1-m>
    <z1-m>-0.5013</z1-m>
@@ -1347,7 +1435,7 @@
     <entry><ind>0.2</ind><dep>90</dep></entry>
     <entry><ind>1.0</ind><dep>90</dep></entry>
   </interpolation>
-  <axis>   
+  <axis>
    <x1-m>2.1</x1-m>
    <y1-m>-0.1833</y1-m>
    <z1-m>-0.7048</z1-m>
@@ -1366,7 +1454,7 @@
     <entry><ind>0.2</ind><dep>-90</dep></entry>
     <entry><ind>1.0</ind><dep>-90</dep></entry>
   </interpolation>
-  <axis>   
+  <axis>
    <x1-m>2.1</x1-m>
    <y1-m>0.1833</y1-m>
    <z1-m>-0.7048</z1-m>
@@ -1477,7 +1565,7 @@
   <object-name>mainwheels_left</object-name>
   <property>gear/gear[1]/compression-norm</property>
   <factor>-0.3048</factor>
-  <axis>   
+  <axis>
    <x1-m>10.2373</x1-m>
    <y1-m>0</y1-m>
    <z1-m>1.0802</z1-m>
@@ -1492,7 +1580,7 @@
   <object-name>mainwheels_right</object-name>
   <property>gear/gear[2]/compression-norm</property>
   <factor>-0.3048</factor>
-  <axis>   
+  <axis>
    <x1-m>10.2373</x1-m>
    <y1-m>0</y1-m>
    <z1-m>1.0802</z1-m>
@@ -1587,7 +1675,7 @@
   <y-factor>0.0</y-factor>
   <z-factor>0.0</z-factor>
  </animation>
- 
+
  <nasal>
   <load><![CDATA[
 # Receive generic properties sent by the remote An-24b and alias them to properties used in animations.

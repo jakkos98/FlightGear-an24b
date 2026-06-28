@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<PropertyList>
+ <sim>
+     <model>
+		<livery>
+            <name type="string">P-537 Air Koryo</name>
+			<an24dvigatel>Liveries/P-537 Air Koryo/an24dvigatel.png</an24dvigatel>
+			<an24hvost>Liveries/P-537 Air Koryo/an24hvost.png</an24hvost>
+			<an24korpusLeft>Liveries/P-537 Air Koryo/an24korpusLeft.png</an24korpusLeft>
+			<an24stabilizator>Liveries/P-537 Air Koryo/an24stabilizator.png</an24stabilizator>
+			<CIS_An24B_t>Liveries/P-537 Air Koryo/CIS_An24B_t.png</CIS_An24B_t>
+		</livery>
+     </model>
+ </sim>
+</PropertyList>

@@ -16,7 +16,7 @@
       <landing-length-ft type="int">3300</landing-length-ft>
     </minimum>
     <climb>
-      <!-- potential for climb data in the future 
+      <!-- potential for climb data in the future
       <airspeed-knots type="int">280</airspeed-knots>
       <vertical-speed-fpm type="int">2000</vertical-speed-fpm>
       -->
@@ -28,7 +28,7 @@
       <!-- <flight-level type="int">330</flight-level> -->
     </cruise>
     <descent>
-      <!-- potential for descent data in the future 
+      <!-- potential for descent data in the future
       <airspeed-knots type="int">330</airspeed-knots>
       <vertical-speed-fpm type="int">-1200</vertical-speed-fpm>
       -->
@@ -46,7 +46,7 @@
 
  <sim>
   <description>Antonov An-24B</description>
-  <long-description>The Antonov An-24 is a successful Soviet aircraft designed in 1957.  Its many variants still serve as cargo, transport, reconnaissance, fire fighter, or even as navigator training plane.  Its derivatives, the An-26, An-30 and An-32 are used for military purposes. 
+  <long-description>The Antonov An-24 is a successful Soviet aircraft designed in 1957.  Its many variants still serve as cargo, transport, reconnaissance, fire fighter, or even as navigator training plane.  Its derivatives, the An-26, An-30 and An-32 are used for military purposes.
   </long-description>
 
   <author>Michael Soitanen (FDM, Systems), Adrian (3D, Systems)</author>
@@ -63,6 +63,14 @@
     <author n="2">
       <name>L. Brenta</name>
       <description>Bug tracing, Ideas</description>
+    </author>
+    <author n="3">
+      <name>Kestrel</name>
+      <description>Liveries systems, Paintkit, Liveries</description> <!--https://forum.flightgear.org/viewtopic.php?f=13&t=42272-->
+    </author>
+    <author n="4">
+      <name>Jakub Kosakowski</name>
+      <description>Liveries system</description> <!--Adaptation of liveries system by Kesterel for An-24B version from ShFsn GitHub-->
     </author>
   </authors>
 
@@ -167,6 +175,9 @@
  <model>
   <path>Aircraft/an24b/Models/An-24B.xml</path>
   <fallback-model-index type="int">217</fallback-model-index>
+  <livery>
+    <file type="string"/>
+  </livery>
  </model>
 
  <mouse>
@@ -421,6 +432,13 @@ In keyboard mode views are accesible only by Alt- bindings.
             </script>
           </binding>
         </item>
+        <item>
+          <label>Select Livery</label>
+          <binding>
+            <command>nasal</command>
+            <script>aircraft.livery.dialog.open();</script>
+          </binding>
+        </item>
       </menu>
     </default>
   </menubar>
@@ -510,7 +528,7 @@ In keyboard mode views are accesible only by Alt- bindings.
 
  <input>
   <keyboard>
-    
+
 <!-- Keybindings of general stuff -->
      <key n="115">
        <name>s</name>
@@ -573,7 +591,7 @@ In keyboard mode views are accesible only by Alt- bindings.
         </script>
        </binding>
      </key>
-     
+
      <key n="45">
       <name>minus</name>
       <desc>Idle Lock position</desc>
@@ -667,7 +685,7 @@ In keyboard mode views are accesible only by Alt- bindings.
        </binding>
       </mod-up>
      </key>
-     
+
      <key n="1">
       <name>Ctrl+A</name>
       <desc>Autopilot altitude lock</desc>
@@ -1350,7 +1368,7 @@ In keyboard mode views are accesible only by Alt- bindings.
     <steering>
      <steer-cmd-norm-final type="double">0</steer-cmd-norm-final>
     </steering>
-   </fcs> 
+   </fcs>
    <gear>
     <steering>10.0</steering>
     <nose-wheel-steering type="bool">true</nose-wheel-steering>
@@ -1710,7 +1728,7 @@ In keyboard mode views are accesible only by Alt- bindings.
     <buttons>
       <turn-on type="double">0</turn-on>
       <horizon type="double">0</horizon>
-      <kv type="double">0</kv>      
+      <kv type="double">0</kv>
     </buttons>
     <internal>
       <powered type="int">0</powered>
@@ -2013,7 +2031,7 @@ In keyboard mode views are accesible only by Alt- bindings.
   </Pressure>
 
   <R-802>
-   <channel type="int">1</channel> 
+   <channel type="int">1</channel>
    <dial100 type="int">100</dial100>
    <dial10 type="int">0</dial10>
    <dial1 type="double">0</dial1>
@@ -2242,6 +2260,9 @@ In keyboard mode views are accesible only by Alt- bindings.
   <view>
     <file>Nasal/view.nas</file>
   </view>
+  <livery>
+    <file>Aircraft/an24b/Nasal/liveries.nas</file>
+  </livery>
  </nasal>
 
  <limits>

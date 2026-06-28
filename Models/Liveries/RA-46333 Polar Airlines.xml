@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<PropertyList>
+ <sim>
+     <model>
+		<livery>
+            <name type="string">RA-46333 Polar Airlines</name>
+			<an24dvigatel>Liveries/RA-46333 Polar Airlines/an24dvigatel.png</an24dvigatel>
+			<an24hvost>Liveries/RA-46333 Polar Airlines/an24hvost.png</an24hvost>
+			<an24korpusLeft>Liveries/RA-46333 Polar Airlines/an24korpusLeft.png</an24korpusLeft>
+			<an24stabilizator>Liveries/RA-46333 Polar Airlines/an24stabilizator.png</an24stabilizator>
+			<CIS_An24B_t>Liveries/RA-46333 Polar Airlines/CIS_An24B_t.png</CIS_An24B_t>
+		</livery>
+     </model>
+ </sim>
+</PropertyList>
